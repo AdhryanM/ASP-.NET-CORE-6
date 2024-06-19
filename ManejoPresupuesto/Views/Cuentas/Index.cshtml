@@ -1,0 +1,34 @@
+﻿@model IEnumerable<IndiceCuentasViewModel>
+@{
+    ViewData["Title"] = "Cuentas";
+}
+
+<h1>Cuentas</h1>
+<a asp-action="Crear" class="btn btn-primary mb-3">Crear nuevo</a>
+
+<div class="contenedor-total mb-3">
+    <div>
+        <div>
+            <strong>Activos</strong>
+        </div>
+        <div class="activo">
+            @Model.Where(x => x.Balance > 0).Sum(x => x.Balance)
+        </div>
+    </div>
+    <div>
+        <div>
+            <strong>Pasivos</strong>
+        </div>
+        <div class="pasivo">
+            @Model.Where(x => x.Balance < 0).Sum(x => x.Balance)
+        </div>
+    </div>
+    <div>
+        <div>
+            <strong>Total</strong>
+        </div>
+        <div>
+            @Model.Sum(x => x.Balance)
+        </div>
+    </div>
+</div>
